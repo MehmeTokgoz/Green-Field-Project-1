@@ -1,18 +1,7 @@
-import React from "react";
-import { Toaster } from "react-hot-toast";
-import { Routes, Route } from "react-router-dom";
+import "./App.css";
 
-const App = () => {
-    return (
-        <>
-            <Toaster
-                position="top-right"
-                toastOptions={{
-                    style: { fontSize: "1.8rem" },
-                }}
-            ></Toaster>
-        </>
-    );
-};
+function App() {
+    return <div className="App">Hello</div>;
+}
 
 export default App;
