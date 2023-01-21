@@ -1,4 +1,5 @@
 import express from "express";
+import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import cors from "cors";
 import "dotenv/config";
@@ -11,6 +12,7 @@ const PORT = process.env.PORT || 8000;
 const app = express();
 
 // middleware
+app.use(bodyParser.json());
 app.use(cors());
 app.use(morgan("tiny"));
 app.use(express.json());
