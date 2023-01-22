@@ -10,6 +10,16 @@ export const getAllProducts = async (req, res, next) => {
     };
 };
 
+export const getOneProduct = async (req, res, next) => {
+    try {
+        const product = await Product.findById(req.params.id).exec();
+        // console.log(product);
+        return res.status(200).json(product);
+    } catch (error) {
+        return next(error);
+    };
+};
+
 export const createProduct = async (req, res, next) => {
     try {
         const newProduct = new Product({
