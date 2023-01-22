@@ -38,20 +38,20 @@ const Home = () => {
         if (newProductName.length === 0 || newProductQuantity.length === 0) {
             toast.error("Name and quantity are required");
             return;
-        };
+        }
         try {
-            const {data} = await axios.post("/api/products", {
+            const { data } = await axios.post("/api/products", {
                 name: newProductName,
-                quantity: newProductQuantity
+                quantity: newProductQuantity,
             });
-            toast.success("New Task Created!");
-            setProductList([{...data},...productList]);
+            toast.success("New Product Created!");
+            setProductList([{ ...data }, ...productList]);
             setNewProductName("");
             setNewProductQuantity("");
             setAddingNewProduct(false);
         } catch (error) {
             console.log(error);
-        };
+        }
     };
 
     const togglePopUp = () => {
@@ -60,19 +60,62 @@ const Home = () => {
 
     const updateProduct = (product) => {
         const newList = [...productList];
-        newList.forEach(item => {
+        newList.forEach((item) => {
             if (item._id === product._id) {
                 item.name = product.name;
                 item.quantity = product.quantity;
             }
         });
+        toast.success("Product Updated Successfully!");
         setProductList(newList);
-      };
+    };
+
+    const decreaseQuantity = async (id) => {
+        try {
+            const product = productList.find((product) => id === product._id);
+            const newQuantity = (Number(product.quantity) - 1).toString();
+            if (newQuantity < 0) {
+                toast.error("Quantity cannot be a negative number!");
+                return;
+            }
+            await axios.put(`/api/products/quantity/${id}`, {
+                quantity: newQuantity,
+            });
+            const newList = [...productList];
+            newList.forEach((item) => {
+                if (item._id === id) {
+                    item.quantity = newQuantity;
+                }
+            });
+            setProductList(newList);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const increaseQuantity = async (id) => {
+        try {
+            const product = productList.find((product) => id === product._id);
+            const newQuantity = (Number(product.quantity) + 1).toString();
+            await axios.put(`/api/products/quantity/${id}`, {
+                quantity: newQuantity,
+            });
+            const newList = [...productList];
+            newList.forEach((item) => {
+                if (item._id === id) {
+                    item.quantity = newQuantity;
+                }
+            });
+            setProductList(newList);
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
     const removeProduct = async (id) => {
         try {
             await axios.delete(`/api/products/${id}`);
-            toast.success("Task Deleted");
+            toast.success("Product Deleted!");
             setProductList(productList.filter((product) => product._id !== id));
         } catch (error) {
             console.log(error);
@@ -87,28 +130,32 @@ const Home = () => {
                     Add Product
                 </button>
                 {addingNewProduct && (
-                <form className="product-form" onSubmit={addProduct}>
-                    <input
-                        type="text"
-                        value={newProductName}
-                        placeholder="Product Name"
-                        onChange={(e) => setNewProductName(e.target.value)}
-                    />
-                    <input
-                        type="text"
-                        value={newProductQuantity}
-                        placeholder="Quantity"
-                        onChange={(e) => setNewProductQuantity(e.target.value)}
-                    />
-                    <button className="product-form-button" type="submit">
-                        Add
-                    </button>
-                </form>
-            )}
+                    <form className="product-form" onSubmit={addProduct}>
+                        <input
+                            type="text"
+                            value={newProductName}
+                            placeholder="Product Name"
+                            onChange={(e) => setNewProductName(e.target.value)}
+                        />
+                        <input
+                            type="text"
+                            value={newProductQuantity}
+                            placeholder="Quantity"
+                            onChange={(e) =>
+                                setNewProductQuantity(e.target.value)
+                            }
+                        />
+                        <button className="product-form-button" type="submit">
+                            Add
+                        </button>
+                    </form>
+                )}
                 <ProductsList
                     productList={productList}
                     removeProduct={removeProduct}
                     productToUpdate={(product) => setProductToUpdate(product)}
+                    decreaseQuantity={decreaseQuantity}
+                    increaseQuantity={increaseQuantity}
                     togglePopUp={togglePopUp}
                 />
             </div>
