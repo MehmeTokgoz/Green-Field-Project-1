@@ -4,7 +4,7 @@ import Product from "./Product";
 import { toast } from "react-hot-toast";
 
 const ProductsList = (props) => {
-// console.log(props);
+    // console.log(props);
     return (
         <div className="list-container">
             {props.productList.length > 0 ? (
@@ -17,6 +17,9 @@ const ProductsList = (props) => {
                                 removeProduct={props.removeProduct}
                                 togglePopUp={props.togglePopUp}
                                 productToUpdate={props.productToUpdate}
+                                // updateQuantity={props.updateQuantity}
+                                decreaseQuantity={props.decreaseQuantity}
+                                increaseQuantity={props.increaseQuantity}
                             />
                         ))}
                     </tbody>

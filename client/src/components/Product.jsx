@@ -6,9 +6,19 @@ const Product = (props) => {
             <td>{props.product.name}</td>
             <td className="product-details">
                 <div className="product-quantity">
-                    <button className="minus">-</button>
+                    <button
+                        className="minus"
+                        onClick={(e) => props.decreaseQuantity(props.product._id)}
+                    >
+                        -
+                    </button>
                     {props.product.quantity}
-                    <button className="plus">+</button>
+                    <button
+                        className="plus"
+                        onClick={(e) => props.increaseQuantity(props.product._id)}
+                    >
+                        +
+                    </button>
                 </div>
                 <button
                     className="update-product"
