@@ -1,18 +1,30 @@
 import React from "react";
 
-const Product = ({ product, removeProduct }) => {
-    
+const Product = (props) => {
     return (
         <tr>
-            <td>{product.name}</td>
+            <td>{props.product.name}</td>
             <td className="product-details">
                 <div className="product-quantity">
                     <button className="minus">-</button>
-                    {product.quantity}
+                    {props.product.quantity}
                     <button className="plus">+</button>
                 </div>
-                <button className="update-product">Update</button>
-                <button className="remove-product" onClick={() => removeProduct(product._id)}>Remove</button>
+                <button
+                    className="update-product"
+                    onClick={() => {
+                        props.productToUpdate(props.product);
+                        props.togglePopUp();
+                    }}
+                >
+                    Update
+                </button>
+                <button
+                    className="remove-product"
+                    onClick={() => props.removeProduct(props.product._id)}
+                >
+                    Remove
+                </button>
             </td>
         </tr>
     );
