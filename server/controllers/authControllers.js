@@ -1,4 +1,4 @@
-import bcrypt from "bcrypt";
+import bcryptjs from "bcryptjs";
 import User from "../models/User.js";
 import jwt from "jsonwebtoken";
 import createError from "../utils/createError.js";
@@ -14,8 +14,8 @@ export const signUp = async (req, res, next) => {
     }
 
     try {
-        const salt = await bcrypt.genSalt(10);
-        const hashedPassword = await bcrypt.hash(req.body.password, salt);
+        const salt = await bcryptjs.genSalt(10);
+        const hashedPassword = await bcryptjs.hash(req.body.password, salt);
 
         const newUser = new User({
             name: req.body.name,
@@ -49,7 +49,7 @@ export const signIn = async (req, res, next) => {
                 createError({ status: 404, message: "User not found." })
             );
         }
-        const isPasswordCorrect = await bcrypt.compare(
+        const isPasswordCorrect = await bcryptjs.compare(
             req.body.password,
             user.password
         );
