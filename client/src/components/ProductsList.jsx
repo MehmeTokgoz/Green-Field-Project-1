@@ -17,9 +17,7 @@ const ProductsList = (props) => {
                                 removeProduct={props.removeProduct}
                                 togglePopUp={props.togglePopUp}
                                 productToUpdate={props.productToUpdate}
-                                // updateQuantity={props.updateQuantity}
-                                decreaseQuantity={props.decreaseQuantity}
-                                increaseQuantity={props.increaseQuantity}
+                                updateQuantity={props.updateQuantity}
                             />
                         ))}
                     </tbody>

@@ -70,33 +70,17 @@ const Home = () => {
         setProductList(newList);
     };
 
-    const decreaseQuantity = async (id) => {
+    const updateQuantity = async (e, id) => {
         try {
             const product = productList.find((product) => id === product._id);
-            const newQuantity = (Number(product.quantity) - 1).toString();
+            const newQuantity =
+                e.target.className === "minus"
+                    ? (Number(product.quantity) - 1).toString()
+                    : (Number(product.quantity) + 1).toString();
             if (newQuantity < 0) {
                 toast.error("Quantity cannot be a negative number!");
                 return;
             }
-            await axios.put(`/api/products/quantity/${id}`, {
-                quantity: newQuantity,
-            });
-            const newList = [...productList];
-            newList.forEach((item) => {
-                if (item._id === id) {
-                    item.quantity = newQuantity;
-                }
-            });
-            setProductList(newList);
-        } catch (error) {
-            console.log(error);
-        }
-    };
-
-    const increaseQuantity = async (id) => {
-        try {
-            const product = productList.find((product) => id === product._id);
-            const newQuantity = (Number(product.quantity) + 1).toString();
             await axios.put(`/api/products/quantity/${id}`, {
                 quantity: newQuantity,
             });
@@ -154,8 +138,7 @@ const Home = () => {
                     productList={productList}
                     removeProduct={removeProduct}
                     productToUpdate={(product) => setProductToUpdate(product)}
-                    decreaseQuantity={decreaseQuantity}
-                    increaseQuantity={increaseQuantity}
+                    updateQuantity={updateQuantity}
                     togglePopUp={togglePopUp}
                 />
             </div>

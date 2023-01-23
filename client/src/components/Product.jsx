@@ -8,14 +8,14 @@ const Product = (props) => {
                 <div className="product-quantity">
                     <button
                         className="minus"
-                        onClick={(e) => props.decreaseQuantity(props.product._id)}
+                        onClick={(e) => props.updateQuantity(e, props.product._id)}
                     >
                         -
                     </button>
                     {props.product.quantity}
                     <button
                         className="plus"
-                        onClick={(e) => props.increaseQuantity(props.product._id)}
+                        onClick={(e) => props.updateQuantity(e, props.product._id)}
                     >
                         +
                     </button>
