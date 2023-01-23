@@ -8,6 +8,7 @@ import PrivateRoutes from "./components/PrivateRoutes";
 const App = () => {
     return (
         <>
+        {/* Using toaster for notifications */}
             <Toaster
                 position="top-right"
                 toastOptions={{
