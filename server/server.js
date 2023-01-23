@@ -11,17 +11,17 @@ import error from "./utils/createError.js";
 const PORT = process.env.PORT || 8000;
 const app = express();
 
-// middleware
+// Adding middlewares
 app.use(bodyParser.json());
 app.use(cors());
 app.use(morgan("tiny"));
 app.use(express.json());
 app.use(cookieParser());
 
-// routes
+// All routes with an '/api' prefix 
 app.use("/api", allRoutes);
 
-//error handler
+//Error handler
 app.use((error, req, res, next) => {
     const status = error.statusCode || 500;
     const message = error.message || "Internal Server Error.";
@@ -31,6 +31,7 @@ app.use((error, req, res, next) => {
 
 mongoose.set("strictQuery", false);
 
+// Connection to database:
 const connectDB = async () => {
     try {
         await mongoose.connect(process.env.MONGO_URI);

@@ -1,7 +1,9 @@
+
 import mongoose from "mongoose";
 
 const { Schema } = mongoose;
 
+//Creating new product schema:
 const productSchema = new Schema(
     {
         name: {
@@ -12,6 +14,7 @@ const productSchema = new Schema(
             type: String,
             required: true,
         },
+//Relation with the user:
         user: {
             type: Schema.Types.ObjectId,
             ref: "User",

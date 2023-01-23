@@ -8,12 +8,14 @@ import PrivateRoutes from "./components/PrivateRoutes";
 const App = () => {
     return (
         <>
+
             <Toaster
                 position="top-right"
                 toastOptions={{
                     style: { fontSize: "1.8rem" },
                 }}
             ></Toaster>
+
             <Routes>
                 <Route element={<PrivateRoutes />}>
                     <Route path="/" element={<Home />} />

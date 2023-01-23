@@ -1,5 +1,6 @@
 import User from "../models/User.js";
 
+//Get user information 
 export const getUserInfo = async (req, res, next) => {
     console.log(req.user.id);
     try {
