@@ -31,7 +31,7 @@ app.use((error, req, res, next) => {
 
 mongoose.set("strictQuery", false);
 
-// Connection to database
+// Connection to database:
 const connectDB = async () => {
     try {
         await mongoose.connect(process.env.MONGO_URI);
