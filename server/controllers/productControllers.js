@@ -1,6 +1,7 @@
 import Product from "../models/Product.js";
 import createError from "../utils/createError.js";
 
+//Get all products belong to the specific user from database
 export const getAllProducts = async (req, res, next) => {
     try {
         const products = await Product.find({ user: req.user.id });
@@ -10,6 +11,7 @@ export const getAllProducts = async (req, res, next) => {
     };
 };
 
+//Get one product belongs the specific user from database
 export const getOneProduct = async (req, res, next) => {
     try {
         const product = await Product.findById(req.params.id).exec();
@@ -19,7 +21,7 @@ export const getOneProduct = async (req, res, next) => {
         return next(error);
     };
 };
-
+//Creating new product and save it in database
 export const createProduct = async (req, res, next) => {
     try {
         const newProduct = new Product({
@@ -33,9 +35,10 @@ export const createProduct = async (req, res, next) => {
         return next(error);
     };
 };
-
+//Updating product
 export const updateProduct = async (req, res, next) => {
     try {
+//Checking the existing product and user before updating product 
         const product = await Product.findById(req.params.id).exec();
         if (!product) return next(createError({status: 404, message: "No products found"}));
         if (product.user.toString() !== req.user.id) return next(createError({status: 401, message: "This is not your product."}));
@@ -50,8 +53,10 @@ export const updateProduct = async (req, res, next) => {
     };
 };
 
+//Updating quantity
 export const updateQuantity = async (req, res, next) => {
     try {
+//Checking the existing product and user before updating quantity
         const product = await Product.findById(req.params.id).exec();
         if (!product) return next(createError({status: 404, message: "No products found"}));
         if (product.user.toString() !== req.user.id) return next(createError({status: 401, message: "This is not your product."}));
@@ -65,8 +70,10 @@ export const updateQuantity = async (req, res, next) => {
     };
 };
 
+//Deleting products
 export const removeProduct = async (req, res, next) => {
     try {
+//Checking the existing product and user before deleting product
         const product = await Product.findById(req.params.id).exec();
         if (!product) return next(createError({status: 404, message: "No products found"}));
         if (product.user.toString() !== req.user.id) return next(createError({status: 401, message: "This is not your product."}));

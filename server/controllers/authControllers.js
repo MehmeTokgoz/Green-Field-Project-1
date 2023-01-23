@@ -3,7 +3,10 @@ import User from "../models/User.js";
 import jwt from "jsonwebtoken";
 import createError from "../utils/createError.js";
 
+
+
 export const signUp = async (req, res, next) => {
+//Checking the required fields before creating the user:
     if (!req.body.name || !req.body.email || !req.body.password) {
         return next(
             createError({
@@ -12,7 +15,7 @@ export const signUp = async (req, res, next) => {
             })
         );
     }
-
+// Hashing password:
     try {
         const salt = await bcryptjs.genSalt(10);
         const hashedPassword = await bcryptjs.hash(req.body.password, salt);
@@ -22,7 +25,7 @@ export const signUp = async (req, res, next) => {
             email: req.body.email,
             password: hashedPassword,
         });
-
+//Saving hashed password to database:
         await newUser.save();
         return res.status(201).json("New User Created.");
     } catch (error) {
@@ -31,7 +34,9 @@ export const signUp = async (req, res, next) => {
     }
 };
 
+
 export const signIn = async (req, res, next) => {
+// Checking the required fields before sign in
     if (!req.body.email || !req.body.password) {
         return next(
             createError({
@@ -40,15 +45,19 @@ export const signIn = async (req, res, next) => {
             })
         );
     }
+
     try {
+//Get the user whose email is provided email. And from that user get back name, email, password 
         const user = await User.findOne({ email: req.body.email }).select(
             "name email password"
         );
+//Check the user exists or not:
         if (!user) {
             return next(
                 createError({ status: 404, message: "User not found." })
             );
         }
+//Check the password if the user exists:
         const isPasswordCorrect = await bcryptjs.compare(
             req.body.password,
             user.password
@@ -58,6 +67,7 @@ export const signIn = async (req, res, next) => {
                 createError({ status: 400, message: "Wrong password." })
             );
         }
+//Create a cookie and token if the password is correct
         const payload = {
             id: user._id,
             name: user.name,
@@ -77,11 +87,13 @@ export const signIn = async (req, res, next) => {
     }
 };
 
+//Creating sign out functionality and clearing cookies when user signs out 
 export const signOut = (req, res) => {
     res.clearCookie("access_token");
     return res.status(200).json({ message: "Logout Successful." });
 };
 
+// Check the status, is the user logged in or not:
 export const status = (req, res) => {
     const token = req.cookies.access_token;
     if (!token) {
