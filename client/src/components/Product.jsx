@@ -2,6 +2,7 @@ import React from "react";
 
 const Product = (props) => {
     return (
+        //Creating a table for products
         <tr>
             <td>{props.product.name}</td>
             <td className="product-details">

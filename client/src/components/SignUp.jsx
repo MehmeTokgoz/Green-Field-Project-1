@@ -5,15 +5,17 @@ import axios from "axios";
 const SignUp = () => {
     const signUp = async (e) => {
         e.preventDefault();
+        //Getting the values from the input
         const user = {
             name: e.target.name.value,
             email: e.target.email.value,
             password: e.target.password.value,
         };
-
+        //Creating a new user 
         try {
             await axios.post("http://localhost:8000/api/auth/signUp", user);
             toast.success("Sign up Successful!");
+            //Clearing out the inputs
             e.target.name.value = "";
             e.target.email.value = "";
             e.target.password.value = "";
