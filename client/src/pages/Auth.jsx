@@ -9,7 +9,7 @@ import "./Auth.css";
 const Auth = () => {
   const { auth } = useAuth();
   const navigate = useNavigate();
-
+//Check the Auth every time and auth and navigate are updated
   useEffect(() => {
     if (auth) {
       navigate("/");

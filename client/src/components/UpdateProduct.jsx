@@ -7,9 +7,11 @@ function UpdateProduct(props) {
     const [productQuantity, setProductQuantity] = useState(props.product.quantity);
 
     const updateProduct = () => {
+        //If input values are empty, close the window and return
         if (productName.trim() === "" || productQuantity.trim() === "") {
             props.togglePopUp();
         } else {
+            //Update the product
             axios
                 .put(`/api/products/${props.product._id}`, {
                     _id: props.product._id,

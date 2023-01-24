@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import logo from "./logo.png";
 
 const Navbar = () => {
+    //Getting user info from server
     const [user, setUser] = useState(null);
     const navigate = useNavigate();
     const getUserInfo = async () => {
@@ -15,7 +16,7 @@ const Navbar = () => {
             console.log(error);
         }
     };
-
+//Signing out the user
     const handleSignOut = async () => {
         try {
             await axios.get("api/auth/signOut");
@@ -26,7 +27,7 @@ const Navbar = () => {
             console.log(error);
         }
     };
-
+//Calling getUserInfo every time the page renders
     useEffect(() => {
         getUserInfo();
     }, []);

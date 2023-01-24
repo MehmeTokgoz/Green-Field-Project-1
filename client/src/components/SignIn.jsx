@@ -7,15 +7,17 @@ const SignIn = () => {
     const navigate = useNavigate();
     const signIn = async (e) => {
         e.preventDefault();
+        // Get the values from email and password
         const email = e.target.email.value;
         const password = e.target.password.value;
-
+        // Sign in with those values
         try {
             await axios.post("/api/auth/signIn", {
                 email,
                 password,
             });
-
+            
+        // If the values are correct navigate to the user home page
             navigate("/");
             toast.success("Sign In Successful!");
         } catch (error) {

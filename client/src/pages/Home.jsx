@@ -14,11 +14,11 @@ const Home = () => {
     const [productToUpdate, setProductToUpdate] = useState({});
     const [addingNewProduct, setAddingNewProduct] = useState(false);
     const [showPopUp, setShowPopUp] = useState(false);
-
+//Call getAllProducts function on page render
     useEffect(() => {
         getAllProducts();
     }, []);
-
+//Request to get all products
     const getAllProducts = async () => {
         try {
             const { data } = await axios.get("/api/products");
@@ -28,17 +28,19 @@ const Home = () => {
             console.log(error);
         }
     };
-
+//Toggling the addingNewProduct to show and hide the form
     const showForm = () => {
         setAddingNewProduct(!addingNewProduct);
     };
-
+// Request to add product
     const addProduct = async (e) => {
         e.preventDefault();
+//Checking if values are empty
         if (newProductName.length === 0 || newProductQuantity.length === 0) {
             toast.error("Name and quantity are required");
             return;
         }
+//If values are not empty add the products
         try {
             const { data } = await axios.post("/api/products", {
                 name: newProductName,
@@ -53,11 +55,11 @@ const Home = () => {
             console.log(error);
         }
     };
-
+//Toggling the showPopUp to show and hide popup
     const togglePopUp = () => {
         setShowPopUp(!showPopUp);
     };
-
+// Updating product in the frontend
     const updateProduct = (product) => {
         const newList = [...productList];
         newList.forEach((item) => {
@@ -69,10 +71,11 @@ const Home = () => {
         toast.success("Product Updated Successfully!");
         setProductList(newList);
     };
-
+   // Updating quantity
     const updateQuantity = async (e, id) => {
         try {
             const product = productList.find((product) => id === product._id);
+            //Checking the class to see which button has been clicked
             const newQuantity =
                 e.target.className === "minus"
                     ? (Number(product.quantity) - 1).toString()
@@ -81,10 +84,12 @@ const Home = () => {
                 toast.error("Quantity cannot be a negative number!");
                 return;
             }
+            //Updating the product quantity in the server
             await axios.put(`/api/products/quantity/${id}`, {
                 quantity: newQuantity,
             });
             const newList = [...productList];
+            //Updating the product in the product list
             newList.forEach((item) => {
                 if (item._id === id) {
                     item.quantity = newQuantity;
@@ -98,8 +103,10 @@ const Home = () => {
 
     const removeProduct = async (id) => {
         try {
+            //Deleting the product from server side
             await axios.delete(`/api/products/${id}`);
             toast.success("Product Deleted!");
+            //Removing the product from the list
             setProductList(productList.filter((product) => product._id !== id));
         } catch (error) {
             console.log(error);

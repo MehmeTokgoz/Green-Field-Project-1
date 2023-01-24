@@ -6,24 +6,23 @@ import Auth from "./pages/Auth";
 import PrivateRoutes from "./components/PrivateRoutes";
 
 const App = () => {
-    return (
-        <>
+  return (
+    <>
+      <Toaster
+        position="top-right"
+        toastOptions={{
+          style: { fontSize: "1.8rem" },
+        }}
+      ></Toaster>
 
-            <Toaster
-                position="top-right"
-                toastOptions={{
-                    style: { fontSize: "1.8rem" },
-                }}
-            ></Toaster>
-
-            <Routes>
-                <Route element={<PrivateRoutes />}>
-                    <Route path="/" element={<Home />} />
-                </Route>
-                <Route path="/auth" element={<Auth />}></Route>
-            </Routes>
-        </>
-    );
+      <Routes>
+        <Route element={<PrivateRoutes />}>
+          <Route path="/" element={<Home />} />
+        </Route>
+        <Route path="/auth" element={<Auth />}></Route>
+      </Routes>
+    </>
+  );
 };
 
 export default App;
