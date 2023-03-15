@@ -60,6 +60,7 @@ For the NodeJS:
 Development dependencies:  
 
     "nodemon",  
+    
     "@types/react": "^18.0.26",  
     
     "@types/react-dom": "^18.0.9",  
