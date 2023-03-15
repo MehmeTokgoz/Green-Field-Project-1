@@ -10,6 +10,7 @@
   - [Dependencies](#dependencies)
   - [How to Use?](#how-to-use)
   - [Credits](#credits)
+  - [Demo](#demo)
 
 ## Overview
 It is a cookie tracker. The app aims to allow users to track how much of their products such as fruits, vegetables, and cookies are left.
@@ -112,6 +113,7 @@ Development dependencies:
 ## How to Use?  
 
 Initially, at the beginning of the project, the user lands at the authentication page. Users must sign up or sign in to use the application. Once the user login, he/she will be redirected to the cookie track page. Users can start to track their cookies using `Add Product` button. Users should enter product name and quantity. After clicking the `Add` Button, the product will be added to the form. Then, users can edit the number of products using the `-`, `+` buttons, or `Update` buttons, and delete the product using the `Remove` button. Users can finally log out using the `Sign Out` button.  
+
 ## Credits
 
 Project Owners:  
@@ -119,3 +121,7 @@ Project Owners:
 -Sofia TACHMATZIDOU  
 
 -Mehmet TOKGOZ
+
+## Demo
+You can watch a demo of the application here: [Live-Demo](https://vimeo.com/807437884)
+
