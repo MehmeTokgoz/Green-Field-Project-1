@@ -1,29 +1,50 @@
 
 # SHA GREEN-FIELD TEAM PROJECT
 
+# Table Of Contents:  
+  - [Overview](#overview)
+  - [Description](#description)
+  - [Team](#team)
+  - [Technologies](#technologies)
+  - [Installation and Running Application](#installation-and-running-application)
+  - [Dependencies](#dependencies)
+  - [How to Use?](#how-to-use)
+  - [Credits](#credits)
+
 ## Overview
 It is a cookie tracker. The app aims to allow users to track how much of their products such as fruits, vegetables, and cookies are left.
 
 ## Description
 
-The application can be used by anyone, provided that they register. Users can track how much of their cookies are left. Users can add new cookie, update or remove cookie from the list.  
+The application consists of two pages. One is the authentication page, and the other is the cookie track page. The application can be used by anyone, provided that they register. Users can track how much of their cookies are left. Users can add new cookie, update or remove cookie from the list.  
+
+This project aimed to build an application from scratch just in one week and work with a team. In the future, we would like to add some more features to the project and make the UI smoother and a nice experience for the users.  
+
+## Team  
+  
+- Product Owner: Mehmet TOKGOZ,
+- Scrum Master: Sofia TACHMATZIDOU,
+- Development Team Members: Mehmet TOKGOZ, Sofia TACHMATZIDOU  
+
+## Technologies
+
 This project created using MERN Stack. **MERN Stack** was preferred for this project because it allows faster application development using only javascript and without combining different programming languages.  
 
-   **MongoDB** is a high-performance, cost-effective database system with a schemaless database feature.  
+   **MongoDB** **(mongoose)** is a high-performance, cost-effective database system with a schemaless database feature.  
 
    **Express.js** was used with Node.js, as it links easily and fast to databases.  
 
-   **React**, and Material UI were used to enhance the web design.  
+   **React**  was used to enhance the web design.  
 
-   **Node.js** was chosen for this application, as it is lightweight, efficient, has good performance, and is very fast in building web applications. In addition, there is a vast amount of tools in npm to support the developer.  
+   **Node.js** was chosen for this application, as it is lightweight, efficient, has good performance, and is very fast in building web applications. In addition, there is a vast amount of tools in npm to support the developer.
+     
    
-   This project aimed to build an application from scratch just in one week and work with a team. In the future, we would like to add some more features to the project and make the UI smoother and a nice experience for the users.  
-   
-## Installation
+## Installation and Running Application
 
 The project is uploaded to Github.
 
-To get the project on your computer follow these steps:
+To get the project on your computer follow these steps:  
+
 1. Fork the project's repository to your Github account
 2. Clone the repository from your Github account to your local hard drive `git clone [url]`
 3. Open a command prompt and go to the project's repository
@@ -90,7 +111,7 @@ Development dependencies:
     Create a    .env file and fill in the following properties with your preferences: MONGO_URI, PORT, JWT_SECRET.
 ## How to Use?  
 
-The application consists of two pages. One is the authentication page, and the other is the cookie track page. Initially, at the beginning of the project, the user lands at the authentication page. Users must sign up or sign in to use the application. Once the user login, he/she will be redirected to the cookie track page. Users can start to track their cookies using `Add Product` button. Users should enter product name and quantity. After clicking the `Add` Button, the product will be added to the form. Then, users can edit the number of products using the `-`, `+` buttons, or `Update` buttons, and delete the product using the `Remove` button. Users can finally log out using the `Sign Out` button.  
+Initially, at the beginning of the project, the user lands at the authentication page. Users must sign up or sign in to use the application. Once the user login, he/she will be redirected to the cookie track page. Users can start to track their cookies using `Add Product` button. Users should enter product name and quantity. After clicking the `Add` Button, the product will be added to the form. Then, users can edit the number of products using the `-`, `+` buttons, or `Update` buttons, and delete the product using the `Remove` button. Users can finally log out using the `Sign Out` button.  
 ## Credits
 
 Project Owners:  
